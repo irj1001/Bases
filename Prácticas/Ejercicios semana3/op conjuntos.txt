@@ -1,0 +1,39 @@
+Expedientes = { nombre   asignatura	nota
+          'Pepe'  'FISICA' 6
+					'Pepe'  'CALCULO' 5
+					
+					'Juan'  'CALCULO' 4
+					'Juan'  'FISICA'  4
+					
+					'Maria' 'CALCULO' 4
+					'Maria' 'FISICA'  7
+					
+					'Ana'   'FISICA'  5
+					
+					'Julio' 'INGLES' 9
+}
+
+-- 3 Alumnos matriculados en fisica o en calculo
+pi nombre (sigma asignatura='FISICA' or asignatura='CALCULO' (Expedientes))
+
+-- 4 Alumnos matriculados en Fisica y Calculo
+pi nombre (sigma asignatura='FISICA' (Expedientes))
+union
+pi nombre (sigma asignatura='CALCULO' (Expedientes))
+
+-- 5 Alumnos matriculados en Fisica pero no en Calculo
+pi nombre (sigma asignatura='FISICA' (Expedientes))
+-
+pi nombre (sigma asignatura='CALCULO' (Expedientes))
+
+
+-- 6 Alumnos que han aprobado Fisica y suspendido Calculo
+pi nombre (sigma asignatura='FISICA' ∧ nota>=5 (Expedientes))
+intersect
+pi nombre (sigma asignatura='CALCULO' ∧ nota <5 (Expedientes))
+
+
+-- 7 Alumnos que han aprobado Fisica y no han suspendido Calculo (Que pasa con Ana?)
+pi nombre (sigma asignatura='FISICA' ∧ nota>=5 (Expedientes))
+-
+pi nombre (sigma asignatura='CALCULO' ∧ nota <5 (Expedientes))

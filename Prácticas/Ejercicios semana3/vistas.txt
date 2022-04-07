@@ -1,0 +1,4 @@
+
+vistas con delete:A cada fila en la vista le corresponde una en la tabla(o al revés?). No distinct
+vistas con update: No tenga expresiones + delete
+vistas cin insert: No faltan PK, not null, sin default + update
